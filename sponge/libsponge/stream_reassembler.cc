@@ -64,7 +64,7 @@ void StreamReassembler::_handle_overlap(seg &new_seg) {
     for (auto it = _stored_segs.begin(); it != _stored_segs.end();) {
         auto next_it = ++it;
         --it;
-        if ((new_seg.index >= it->index && new_seg.index < it->index + it->length) ||
+        if ((new_seg.index >= it->index && new_seg.index + new_seg.length  < it->index + it->length) ||
             (it->index >= new_seg.index && it->index < new_seg.index + new_seg.length)) {
             _merge_seg(new_seg, *it);
             _stored_segs.erase(it);
